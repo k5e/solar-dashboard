@@ -4,22 +4,22 @@ import altair as alt
 import plotly.express as px
 
 st.set_page_config(
-    page_title="Rappenstraße – Solar-Dashboard",
+    page_title="Solar-Dashboard",
     page_icon="☀️",
     layout="wide",
     initial_sidebar_state="expanded")
 
 alt.themes.enable("dark")
 
-df_reshaped = pd.read_csv('data/solar.csv')
+df_reshaped = pd.read_csv('./app/data/solar.csv')
 
 with st.sidebar:
-    st.title('☀️ Rappenstraße – Solar-Dashboard')
+    st.title('☀️ Solar-Dashboard')
     
     day_list = list(df_reshaped.DATE.unique())[::-1]
-    
-    selected_day = st.selectbox('Tag auswählen', day_list, index=len(day_list)-1)
-    df_selected_day = df_reshaped[df_reshaped.DATE == selected_day]
+     
+    # selected_day = st.selectbox('Tag auswählen', day_list, index=len(day_list)-1)
+    # df_selected_day = df_reshaped[df_reshaped.DATE == selected_day]
 
     color_theme_list = ['plasma', 'blues', 'cividis', 'greens', 'inferno', 'magma', 'reds', 'rainbow', 'turbo', 'viridis']
     selected_color_theme = st.selectbox('Farben auswählen', color_theme_list)
@@ -45,7 +45,7 @@ def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
 col = st.columns((1), gap='medium')
 
 with col[0]:
-    st.markdown('#### Energieertrag')
+    st.markdown('## Energieertrag')
     
     #choropleth = make_choropleth(df_selected_year, 'states_code', 'population', selected_color_theme)
     #st.plotly_chart(choropleth, use_container_width=True)
