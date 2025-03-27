@@ -12,7 +12,7 @@ st.set_page_config(
 
 alt.themes.enable("dark")
 
-df_reshaped = pd.read_csv('./app/data/solar.csv')
+df_reshaped = pd.read_csv('./app/data/solar1.csv')
 
 with st.sidebar:
     st.title('☀️ Solar-Dashboard')
@@ -58,6 +58,7 @@ col = st.columns((1), gap='medium')
 with col[0]:
     st.markdown('## Energieertrag')
        
+    st.line_chart(data=df_selected_days, x='DATETIME', y='AC_POWER', x_label='Datum/Zeit', y_label='Ertrag (AC)', color=None, width=None, height=None, use_container_width=True)
     heatmap = make_heatmap(df_selected_days, 'DATE', 'TIME', 'AC_POWER', selected_color_theme)
     st.altair_chart(heatmap, use_container_width=True)
     
